@@ -34,11 +34,11 @@ public class EXprincipal extends javax.swing.JFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
+        jmi_videos = new javax.swing.JMenuItem();
+        jmi_playlist = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
-        jMenuItem3 = new javax.swing.JMenuItem();
-        jMenuItem4 = new javax.swing.JMenuItem();
+        jmi_nosub = new javax.swing.JMenuItem();
+        jmi_sub = new javax.swing.JMenuItem();
         jd_suscritos = new javax.swing.JDialog();
         jScrollPane1 = new javax.swing.JScrollPane();
         jt_arbol = new javax.swing.JTree();
@@ -69,19 +69,19 @@ public class EXprincipal extends javax.swing.JFrame {
 
         jMenu2.setText("Visualizar");
 
-        jMenuItem1.setText("Videos");
-        jMenu2.add(jMenuItem1);
+        jmi_videos.setText("Videos");
+        jMenu2.add(jmi_videos);
 
-        jMenuItem2.setText("Playlist");
-        jMenu2.add(jMenuItem2);
+        jmi_playlist.setText("Playlist");
+        jMenu2.add(jmi_playlist);
 
         jMenu3.setText("Canales");
 
-        jMenuItem3.setText("No suscritos");
-        jMenu3.add(jMenuItem3);
+        jmi_nosub.setText("No suscritos");
+        jMenu3.add(jmi_nosub);
 
-        jMenuItem4.setText("Suscritos");
-        jMenu3.add(jMenuItem4);
+        jmi_sub.setText("Suscritos");
+        jMenu3.add(jmi_sub);
 
         jMenu2.add(jMenu3);
 
@@ -192,6 +192,11 @@ public class EXprincipal extends javax.swing.JFrame {
         jLabel8.setText("Contraseña");
 
         btn_crearU.setText("Crear Usuario");
+        btn_crearU.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_crearUMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -292,6 +297,13 @@ public class EXprincipal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btn_loginMouseClicked
 
+    private void btn_crearUMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_crearUMouseClicked
+        canales.add(new Canal(tf_u_canal_.getText()));
+        users.add(new Usuario(tf_u_nom_.getText(), (int)js_u_edad_.getValue(), tf_u_correo_.getText(),canales.get(0),
+                tf_u_user_.getText(), tf_u_pw_.getText()));
+        
+    }//GEN-LAST:event_btn_crearUMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -343,16 +355,16 @@ public class EXprincipal extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JDialog jd_suscritos;
     private javax.swing.JDialog jd_usuario;
+    private javax.swing.JMenuItem jmi_nosub;
+    private javax.swing.JMenuItem jmi_playlist;
+    private javax.swing.JMenuItem jmi_sub;
+    private javax.swing.JMenuItem jmi_videos;
     private javax.swing.JSpinner js_u_edad_;
     private javax.swing.JTree jt_arbol;
     private javax.swing.JPasswordField pf_contra;
@@ -364,6 +376,6 @@ public class EXprincipal extends javax.swing.JFrame {
     private javax.swing.JTextField tf_user;
     // End of variables declaration//GEN-END:variables
     private ArrayList <Usuario> users = new ArrayList();
-    private ArrayList <Canal> canal = new ArrayList();
+    private ArrayList <Canal> canales = new ArrayList();
     private ArrayList <Video> Videos = new ArrayList();
 }

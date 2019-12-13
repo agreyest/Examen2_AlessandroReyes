@@ -29,12 +29,12 @@
                     <Property name="text" type="java.lang.String" value="Visualizar"/>
                   </Properties>
                   <SubComponents>
-                    <MenuItem class="javax.swing.JMenuItem" name="jMenuItem1">
+                    <MenuItem class="javax.swing.JMenuItem" name="jmi_videos">
                       <Properties>
                         <Property name="text" type="java.lang.String" value="Videos"/>
                       </Properties>
                     </MenuItem>
-                    <MenuItem class="javax.swing.JMenuItem" name="jMenuItem2">
+                    <MenuItem class="javax.swing.JMenuItem" name="jmi_playlist">
                       <Properties>
                         <Property name="text" type="java.lang.String" value="Playlist"/>
                       </Properties>
@@ -44,12 +44,12 @@
                         <Property name="text" type="java.lang.String" value="Canales"/>
                       </Properties>
                       <SubComponents>
-                        <MenuItem class="javax.swing.JMenuItem" name="jMenuItem3">
+                        <MenuItem class="javax.swing.JMenuItem" name="jmi_nosub">
                           <Properties>
                             <Property name="text" type="java.lang.String" value="No suscritos"/>
                           </Properties>
                         </MenuItem>
-                        <MenuItem class="javax.swing.JMenuItem" name="jMenuItem4">
+                        <MenuItem class="javax.swing.JMenuItem" name="jmi_sub">
                           <Properties>
                             <Property name="text" type="java.lang.String" value="Suscritos"/>
                           </Properties>
@@ -349,6 +349,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Crear Usuario"/>
               </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btn_crearUMouseClicked"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>

@@ -23,6 +23,15 @@ public class Usuario {
         this.contra = contra;
     }
 
+    public Usuario(String nombre, int edad, String correo, Canal canal, String user, String contra) {
+        this.nombre = nombre;
+        this.edad = edad;
+        this.correo = correo;
+        this.canal = canal;
+        this.user = user;
+        this.contra = contra;
+    }
+    
     public String getNombre() {
         return nombre;
     }

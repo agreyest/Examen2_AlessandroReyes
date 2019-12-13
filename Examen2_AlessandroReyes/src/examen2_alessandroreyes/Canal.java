@@ -14,6 +14,10 @@ public class Canal {
     public Canal() {
     }
 
+    public Canal(String nombre) {
+        this.nombre = nombre;
+    }
+    
     public Canal(int suscriptores, String nombre, String Categoria, int Numvideos, int likesT, int dislikes) {
         this.suscriptores = suscriptores;
         this.nombre = nombre;
