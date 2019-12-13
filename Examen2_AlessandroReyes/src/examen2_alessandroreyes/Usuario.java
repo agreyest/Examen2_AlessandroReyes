@@ -1,8 +1,9 @@
 package examen2_alessandroreyes;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Usuario {
+public class Usuario implements Serializable{
     private String nombre;
     private int edad;
     private String correo;
@@ -12,6 +13,8 @@ public class Usuario {
     private ArrayList<Canal> suscritos = new ArrayList();
     private ArrayList<Playlist> listas = new ArrayList();
 
+    private static final long SerialVersionUID=222L;
+    
     public Usuario() {
     }
 

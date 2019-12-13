@@ -1,8 +1,9 @@
 package examen2_alessandroreyes;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Canal {
+public class Canal implements Serializable{
     private int suscriptores;
     private String nombre;
     private String Categoria;
@@ -11,6 +12,8 @@ public class Canal {
     private int dislikes;
     private ArrayList<Video> videos = new ArrayList();
 
+    private static final long SerialVersionUID=111L;
+    
     public Canal() {
     }
 

@@ -6,6 +6,7 @@
 package examen2_alessandroreyes;
 
 import java.util.ArrayList;
+import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 
 /**
@@ -19,6 +20,11 @@ public class EXprincipal extends javax.swing.JFrame {
      */
     public EXprincipal() {
         initComponents();
+        /*
+        CanalAdmi md = new CanalAdmi("./Canal.aporelcien");
+        md.cargarArchivo();
+        msdm = md.getListaMsdm();
+        */
     }
 
     /**
@@ -39,10 +45,19 @@ public class EXprincipal extends javax.swing.JFrame {
         jMenu3 = new javax.swing.JMenu();
         jmi_nosub = new javax.swing.JMenuItem();
         jmi_sub = new javax.swing.JMenuItem();
+        jmi_repro = new javax.swing.JMenuItem();
         jd_suscritos = new javax.swing.JDialog();
         jScrollPane1 = new javax.swing.JScrollPane();
         jt_arbol = new javax.swing.JTree();
-        jButton1 = new javax.swing.JButton();
+        btn_arbol_r_ = new javax.swing.JButton();
+        jd_reproducir = new javax.swing.JDialog();
+        btn_repro_r_ = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jList1 = new javax.swing.JList<>();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        btn_repro_ = new javax.swing.JButton();
+        pb_playlist = new javax.swing.JProgressBar();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         tf_user = new javax.swing.JTextField();
@@ -87,6 +102,9 @@ public class EXprincipal extends javax.swing.JFrame {
 
         jMenu1.add(jMenu2);
 
+        jmi_repro.setText("Reproducir playlist");
+        jMenu1.add(jmi_repro);
+
         jMenuBar1.add(jMenu1);
 
         jd_usuario.setJMenuBar(jMenuBar1);
@@ -106,7 +124,7 @@ public class EXprincipal extends javax.swing.JFrame {
         jt_arbol.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
         jScrollPane1.setViewportView(jt_arbol);
 
-        jButton1.setText("Regresar");
+        btn_arbol_r_.setText("Regresar");
 
         javax.swing.GroupLayout jd_suscritosLayout = new javax.swing.GroupLayout(jd_suscritos.getContentPane());
         jd_suscritos.getContentPane().setLayout(jd_suscritosLayout);
@@ -117,7 +135,7 @@ public class EXprincipal extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 416, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(153, Short.MAX_VALUE))
             .addGroup(jd_suscritosLayout.createSequentialGroup()
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btn_arbol_r_, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         jd_suscritosLayout.setVerticalGroup(
@@ -126,10 +144,75 @@ public class EXprincipal extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 438, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(btn_arbol_r_, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+
+        btn_repro_r_.setText("Regresar");
+
+        jList1.setModel(new DefaultListModel());
+        jScrollPane2.setViewportView(jList1);
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Nombre del video", "Nombre del canal", "Duracion del video"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.Integer.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane3.setViewportView(jTable1);
+
+        btn_repro_.setText("Reproducir playlist");
+
+        javax.swing.GroupLayout jd_reproducirLayout = new javax.swing.GroupLayout(jd_reproducir.getContentPane());
+        jd_reproducir.getContentPane().setLayout(jd_reproducirLayout);
+        jd_reproducirLayout.setHorizontalGroup(
+            jd_reproducirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jd_reproducirLayout.createSequentialGroup()
+                .addComponent(btn_repro_r_)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btn_repro_))
+            .addGroup(jd_reproducirLayout.createSequentialGroup()
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 462, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(pb_playlist, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        jd_reproducirLayout.setVerticalGroup(
+            jd_reproducirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jd_reproducirLayout.createSequentialGroup()
+                .addGroup(jd_reproducirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 411, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
+                .addComponent(pb_playlist, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(jd_reproducirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btn_repro_r_, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_repro_, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jLabel1.setText("Usuario");
@@ -304,6 +387,16 @@ public class EXprincipal extends javax.swing.JFrame {
         
     }//GEN-LAST:event_btn_crearUMouseClicked
 
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        //-----------------------------------------------------------------------------------------------------------
+        /*
+        Electoradmi e = new Electoradmi("./Elector.alo");
+        e.setListaElectores(electores);
+        e.escribirArchivo();
+        */  
+        //--------------------------------------------------------------------------------------------------------
+    }//GEN-LAST:event_formWindowClosing
+
     /**
      * @param args the command line arguments
      */
@@ -340,9 +433,11 @@ public class EXprincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btn_arbol_r_;
     private javax.swing.JButton btn_crearU;
     private javax.swing.JButton btn_login;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btn_repro_;
+    private javax.swing.JButton btn_repro_r_;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -351,6 +446,7 @@ public class EXprincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JList<String> jList1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
@@ -358,15 +454,21 @@ public class EXprincipal extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JTable jTable1;
+    private javax.swing.JDialog jd_reproducir;
     private javax.swing.JDialog jd_suscritos;
     private javax.swing.JDialog jd_usuario;
     private javax.swing.JMenuItem jmi_nosub;
     private javax.swing.JMenuItem jmi_playlist;
+    private javax.swing.JMenuItem jmi_repro;
     private javax.swing.JMenuItem jmi_sub;
     private javax.swing.JMenuItem jmi_videos;
     private javax.swing.JSpinner js_u_edad_;
     private javax.swing.JTree jt_arbol;
+    private javax.swing.JProgressBar pb_playlist;
     private javax.swing.JPasswordField pf_contra;
     private javax.swing.JTextField tf_u_canal_;
     private javax.swing.JTextField tf_u_correo_;
