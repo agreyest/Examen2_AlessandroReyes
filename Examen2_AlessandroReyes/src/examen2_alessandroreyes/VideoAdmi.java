@@ -8,20 +8,20 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
-public class UsuarioAdmi {
-    private ArrayList<Usuario> listasusuarios = new ArrayList();
+public class VideoAdmi {
+    private ArrayList<Video> listasvideos = new ArrayList();
     private File archivo = null;
     
-    public UsuarioAdmi(String path) {
+    public VideoAdmi(String path) {
         archivo = new File(path);
     }
 
-    public ArrayList<Usuario> getListausers() {
-        return listasusuarios;
+    public ArrayList<Video> getListavid() {
+        return listasvideos;
     }
 
-    public void setListausers(ArrayList<Usuario> listamsdm) {
-        this.listasusuarios = listamsdm;
+    public void setListavid(ArrayList<Video> listamsdm) {
+        this.listasvideos = listamsdm;
     }
 
     public File getArchivo() {
@@ -32,22 +32,22 @@ public class UsuarioAdmi {
         this.archivo = archivo;
     }
     
-    public void setUser(Usuario a){
-        listasusuarios.add(a);
+    public void setVid(Video a){
+        listasvideos.add(a);
     }
     
     public void cargarArchivo() {
         try {            
-            listasusuarios = new ArrayList();
-            Usuario temp;
+            listasvideos = new ArrayList();
+            Video temp;
             if (archivo.exists()) {
                 FileInputStream entrada
                     = new FileInputStream(archivo);
                 ObjectInputStream objeto
                     = new ObjectInputStream(entrada);
                 try {
-                    while ((temp = (Usuario) objeto.readObject()) != null) {
-                        listasusuarios.add(temp);
+                    while ((temp = (Video) objeto.readObject()) != null) {
+                        listasvideos.add(temp);
                     }
                 } catch (EOFException e) {
                     
@@ -66,7 +66,7 @@ public class UsuarioAdmi {
         try {
             fw = new FileOutputStream(archivo);
             bw = new ObjectOutputStream(fw);
-            for (Usuario t : listasusuarios) {
+            for (Video t : listasvideos) {
                 bw.writeObject(t);
             }
             bw.flush();

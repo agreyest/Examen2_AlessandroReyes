@@ -16,11 +16,11 @@ public class CanalAdmi {
         archivo = new File(path);
     }
 
-    public ArrayList<Canal> getListaMsdm() {
+    public ArrayList<Canal> getListacanals() {
         return listascanal;
     }
 
-    public void setListaMsdm(ArrayList<Canal> listamsdm) {
+    public void setListacanals(ArrayList<Canal> listamsdm) {
         this.listascanal = listamsdm;
     }
 
@@ -32,7 +32,7 @@ public class CanalAdmi {
         this.archivo = archivo;
     }
     
-    public void setMdm(Canal a){
+    public void setCanal(Canal a){
         listascanal.add(a);
     }
     
@@ -50,7 +50,7 @@ public class CanalAdmi {
                         listascanal.add(temp);
                     }
                 } catch (EOFException e) {
-                    //encontro el final del archivo
+                    
                 }
                 objeto.close();
                 entrada.close();

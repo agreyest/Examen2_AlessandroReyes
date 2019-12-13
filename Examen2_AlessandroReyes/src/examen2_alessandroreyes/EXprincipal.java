@@ -1,18 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package examen2_alessandroreyes;
 
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author Dell
- */
 public class EXprincipal extends javax.swing.JFrame {
 
     /**
@@ -20,11 +11,19 @@ public class EXprincipal extends javax.swing.JFrame {
      */
     public EXprincipal() {
         initComponents();
-        /*
-        CanalAdmi md = new CanalAdmi("./Canal.aporelcien");
-        md.cargarArchivo();
-        msdm = md.getListaMsdm();
-        */
+        
+        CanalAdmi ca = new CanalAdmi("./Canales.aporelcien");
+        ca.cargarArchivo();
+        canales = ca.getListacanals();
+        
+        UsuarioAdmi ua = new UsuarioAdmi("./Usuarios.aporelcien");
+        ua.cargarArchivo();
+        users = ua.getListausers();
+        
+        VideoAdmi va = new VideoAdmi("./Videos.aporelcien");
+        va.cargarArchivo();
+        videos = va.getListavid();
+        
     }
 
     /**
@@ -389,11 +388,19 @@ public class EXprincipal extends javax.swing.JFrame {
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         //-----------------------------------------------------------------------------------------------------------
-        /*
-        Electoradmi e = new Electoradmi("./Elector.alo");
-        e.setListaElectores(electores);
-        e.escribirArchivo();
-        */  
+        
+        CanalAdmi ca = new CanalAdmi("./Canales.aporelcien");
+        ca.setListacanals(canales);
+        ca.escribirArchivo();
+        
+        UsuarioAdmi ua = new UsuarioAdmi("./Canales.aporelcien");
+        ua.setListausers(users);
+        ua.escribirArchivo();
+        
+        VideoAdmi va = new VideoAdmi("./Canales.aporelcien");
+        va.setListavid(videos);
+        va.escribirArchivo();
+         
         //--------------------------------------------------------------------------------------------------------
     }//GEN-LAST:event_formWindowClosing
 
@@ -479,5 +486,5 @@ public class EXprincipal extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
     private ArrayList <Usuario> users = new ArrayList();
     private ArrayList <Canal> canales = new ArrayList();
-    private ArrayList <Video> Videos = new ArrayList();
+    private ArrayList <Video> videos = new ArrayList();
 }
