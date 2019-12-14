@@ -95,6 +95,15 @@ public class EXprincipal extends javax.swing.JFrame {
         btn_listav_r = new javax.swing.JButton();
         jScrollPane7 = new javax.swing.JScrollPane();
         jl_listav = new javax.swing.JList<>();
+        jd_playlist = new javax.swing.JDialog();
+        jScrollPane8 = new javax.swing.JScrollPane();
+        jl_tupl = new javax.swing.JList<>();
+        jLabel9 = new javax.swing.JLabel();
+        btn_playlist_r_ = new javax.swing.JButton();
+        jLabel10 = new javax.swing.JLabel();
+        jScrollPane9 = new javax.swing.JScrollPane();
+        jl_novid = new javax.swing.JList<>();
+        btn_Add = new javax.swing.JButton();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         tf_user = new javax.swing.JTextField();
@@ -122,6 +131,11 @@ public class EXprincipal extends javax.swing.JFrame {
         jMenu2.setText("Visualizar");
 
         jmi_playlist.setText("Playlist");
+        jmi_playlist.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmi_playlistActionPerformed(evt);
+            }
+        });
         jMenu2.add(jmi_playlist);
 
         jMenu3.setText("Canales");
@@ -481,6 +495,64 @@ public class EXprincipal extends javax.swing.JFrame {
                 .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 388, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
                 .addComponent(btn_listav_r, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+
+        jl_tupl.setModel(new DefaultListModel());
+        jScrollPane8.setViewportView(jl_tupl);
+
+        jLabel9.setText("Tu playlist");
+
+        btn_playlist_r_.setText("Regresar");
+        btn_playlist_r_.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_playlist_r_MouseClicked(evt);
+            }
+        });
+
+        jLabel10.setText("Videos no parte de su playlist");
+
+        jl_novid.setModel(new DefaultListModel());
+        jScrollPane9.setViewportView(jl_novid);
+
+        btn_Add.setText("Agregar a tu playlist");
+
+        javax.swing.GroupLayout jd_playlistLayout = new javax.swing.GroupLayout(jd_playlist.getContentPane());
+        jd_playlist.getContentPane().setLayout(jd_playlistLayout);
+        jd_playlistLayout.setHorizontalGroup(
+            jd_playlistLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jd_playlistLayout.createSequentialGroup()
+                .addComponent(btn_playlist_r_, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(jd_playlistLayout.createSequentialGroup()
+                .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 73, Short.MAX_VALUE)
+                .addComponent(btn_Add, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(45, 45, 45)
+                .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jd_playlistLayout.createSequentialGroup()
+                .addComponent(jLabel9)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel10)
+                .addGap(89, 89, 89))
+        );
+        jd_playlistLayout.setVerticalGroup(
+            jd_playlistLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jd_playlistLayout.createSequentialGroup()
+                .addGap(14, 14, 14)
+                .addGroup(jd_playlistLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel9)
+                    .addComponent(jLabel10))
+                .addGroup(jd_playlistLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jd_playlistLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jd_playlistLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jScrollPane9, javax.swing.GroupLayout.DEFAULT_SIZE, 349, Short.MAX_VALUE)
+                            .addComponent(jScrollPane8)))
+                    .addGroup(jd_playlistLayout.createSequentialGroup()
+                        .addGap(180, 180, 180)
+                        .addComponent(btn_Add, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 101, Short.MAX_VALUE)
+                .addComponent(btn_playlist_r_, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -879,10 +951,26 @@ public class EXprincipal extends javax.swing.JFrame {
             m.addElement(users.get(i).getNombre()+", "+users.get(i).getUser());
         }
         jl_listau.setModel(m);
+        
+        jd_usuario.setModal(false);
+        jd_usuario.setVisible(false);
+        jd_listaU.setModal(true);
+        jd_listaU.pack();
+        jd_listaU.setLocationRelativeTo(this);
+        jd_listaU.setVisible(true);
     }//GEN-LAST:event_jmi_listau_ActionPerformed
 
     private void btn_listau_rMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_listau_rMouseClicked
-        // TODO add your handling code here:
+        DefaultListModel m = (DefaultListModel) jl_listau.getModel();
+        m.removeAllElements();
+        jl_listau.setModel(m);
+        
+        jd_listaU.setModal(false);
+        jd_listaU.setVisible(false);
+        jd_usuario.setModal(true);
+        jd_usuario.pack();
+        jd_usuario.setLocationRelativeTo(this);
+        jd_usuario.setVisible(true);
     }//GEN-LAST:event_btn_listau_rMouseClicked
 
     private void jmi_listac_ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmi_listac_ActionPerformed
@@ -891,10 +979,26 @@ public class EXprincipal extends javax.swing.JFrame {
             m.addElement(canales.get(i).getNombre()+", "+canales.get(i).getCategoria());
         }
         jl_listac.setModel(m);
+        
+        jd_usuario.setModal(false);
+        jd_usuario.setVisible(false);
+        jd_listaC.setModal(true);
+        jd_listaC.pack();
+        jd_listaC.setLocationRelativeTo(this);
+        jd_listaC.setVisible(true);
     }//GEN-LAST:event_jmi_listac_ActionPerformed
 
     private void btn_listac_rMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_listac_rMouseClicked
-        // TODO add your handling code here:
+        DefaultListModel m = (DefaultListModel) jl_listac.getModel();
+        m.removeAllElements();
+        jl_listac.setModel(m);
+        
+        jd_listaC.setModal(false);
+        jd_listaC.setVisible(false);
+        jd_usuario.setModal(true);
+        jd_usuario.pack();
+        jd_usuario.setLocationRelativeTo(this);
+        jd_usuario.setVisible(true);
     }//GEN-LAST:event_btn_listac_rMouseClicked
 
     private void jmi_listav_ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmi_listav_ActionPerformed
@@ -903,11 +1007,76 @@ public class EXprincipal extends javax.swing.JFrame {
             m.addElement(videos.get(i).getNombre()+", "+videos.get(i).getTiempo());
         }
         jl_listav.setModel(m);
+        
+        jd_usuario.setModal(false);
+        jd_usuario.setVisible(false);
+        jd_listaV.setModal(true);
+        jd_listaV.pack();
+        jd_listaV.setLocationRelativeTo(this);
+        jd_listaV.setVisible(true);
     }//GEN-LAST:event_jmi_listav_ActionPerformed
 
     private void btn_listav_rMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_listav_rMouseClicked
-        // TODO add your handling code here:
+        DefaultListModel m = (DefaultListModel) jl_listav.getModel();
+        m.removeAllElements();
+        jl_listav.setModel(m);
+        
+        jd_listaV.setModal(false);
+        jd_listaV.setVisible(false);
+        jd_usuario.setModal(true);
+        jd_usuario.pack();
+        jd_usuario.setLocationRelativeTo(this);
+        jd_usuario.setVisible(true);
     }//GEN-LAST:event_btn_listav_rMouseClicked
+
+    private void jmi_playlistActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmi_playlistActionPerformed
+        int x=0;
+        for (int i = 0; i < users.size(); i++) {
+            if (tf_user.getText().equals(users.get(i).getUser())
+                && pf_contra.getText().equals(users.get(i).getContra())) {
+                x = i;
+                break;
+            }
+        }
+        DefaultListModel m = (DefaultListModel) jl_tupl.getModel();
+        for (int i = 0; i < users.get(x).getPlaylist().getVideos().size(); i++) {
+            m.addElement(users.get(x).getPlaylist().getVideos().get(i));
+        }
+        jl_tupl.setModel(m);
+        DefaultListModel mo = (DefaultListModel) jl_novid.getModel();
+        for (int i = 0; i < users.get(x).getPlaylist().getVideos().size(); i++) {
+            for (int j = 0; j < users.get(x).getPlaylist().getVideos().size(); j++) {
+                if(users.get(x).getPlaylist().getVideos().get(j).equals(videos.get(i))){
+                     break;
+                }
+            }
+            mo.addElement(videos.get(i));
+        }
+        jl_novid.setModel(mo);
+        
+        jd_usuario.setModal(false);
+        jd_usuario.setVisible(false);
+        jd_playlist.setModal(true);
+        jd_playlist.pack();
+        jd_playlist.setLocationRelativeTo(this);
+        jd_playlist.setVisible(true);
+    }//GEN-LAST:event_jmi_playlistActionPerformed
+
+    private void btn_playlist_r_MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_playlist_r_MouseClicked
+        DefaultListModel m = (DefaultListModel) jl_tupl.getModel();
+        m.removeAllElements();
+        jl_tupl.setModel(m);
+        DefaultListModel mo = (DefaultListModel) jl_novid.getModel();
+        mo.removeAllElements();
+        jl_novid.setModel(mo);
+        
+        jd_playlist.setModal(false);
+        jd_playlist.setVisible(false);
+        jd_usuario.setModal(true);
+        jd_usuario.pack();
+        jd_usuario.setLocationRelativeTo(this);
+        jd_usuario.setVisible(true);
+    }//GEN-LAST:event_btn_playlist_r_MouseClicked
 
     /**
      * @param args the command line arguments
@@ -946,6 +1115,7 @@ public class EXprincipal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup bg_dl;
+    private javax.swing.JButton btn_Add;
     private javax.swing.JButton btn_arbol_r_;
     private javax.swing.JButton btn_crearU;
     private javax.swing.JButton btn_dejarC;
@@ -953,11 +1123,13 @@ public class EXprincipal extends javax.swing.JFrame {
     private javax.swing.JButton btn_listau_r;
     private javax.swing.JButton btn_listav_r;
     private javax.swing.JButton btn_login;
+    private javax.swing.JButton btn_playlist_r_;
     private javax.swing.JButton btn_repro_;
     private javax.swing.JButton btn_repro_r_;
     private javax.swing.JButton btn_repro_vid;
     private javax.swing.JButton btn_vid_r_;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -965,6 +1137,7 @@ public class EXprincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JList<String> jList1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
@@ -980,11 +1153,14 @@ public class EXprincipal extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
+    private javax.swing.JScrollPane jScrollPane8;
+    private javax.swing.JScrollPane jScrollPane9;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JDialog jd_listaC;
     private javax.swing.JDialog jd_listaU;
     private javax.swing.JDialog jd_listaV;
+    private javax.swing.JDialog jd_playlist;
     private javax.swing.JDialog jd_reproducir;
     private javax.swing.JDialog jd_suscritos;
     private javax.swing.JDialog jd_usuario;
@@ -992,6 +1168,8 @@ public class EXprincipal extends javax.swing.JFrame {
     private javax.swing.JList<String> jl_listac;
     private javax.swing.JList<String> jl_listau;
     private javax.swing.JList<String> jl_listav;
+    private javax.swing.JList<String> jl_novid;
+    private javax.swing.JList<String> jl_tupl;
     private javax.swing.JMenuItem jmi_Reproducir;
     private javax.swing.JMenuItem jmi_listac_;
     private javax.swing.JMenuItem jmi_listau_;
