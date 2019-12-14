@@ -515,6 +515,11 @@ public class EXprincipal extends javax.swing.JFrame {
         jScrollPane9.setViewportView(jl_novid);
 
         btn_Add.setText("Agregar a tu playlist");
+        btn_Add.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_AddMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jd_playlistLayout = new javax.swing.GroupLayout(jd_playlist.getContentPane());
         jd_playlist.getContentPane().setLayout(jd_playlistLayout);
@@ -1077,6 +1082,25 @@ public class EXprincipal extends javax.swing.JFrame {
         jd_usuario.setLocationRelativeTo(this);
         jd_usuario.setVisible(true);
     }//GEN-LAST:event_btn_playlist_r_MouseClicked
+
+    private void btn_AddMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_AddMouseClicked
+        if(jl_novid.getSelectedIndex() >= 0){
+            DefaultListModel mo = (DefaultListModel) jl_novid.getModel();
+            String nombre = ((Video) mo.get(
+                    jl_novid.getSelectedIndex())).getNombre();
+            for (int i = 0; i < videos.size(); i++) {
+                if(nombre.equals(videos.get(i).getNombre())){
+                    DefaultListModel m = (DefaultListModel) jl_tupl.getModel();
+                    m.addElement(videos.get(i));
+                    jl_tupl.setModel(m);
+                    mo.remove(jl_novid.getSelectedIndex());
+                    jl_novid.setModel(mo);
+                    break;
+                }
+            }
+            
+        }
+    }//GEN-LAST:event_btn_AddMouseClicked
 
     /**
      * @param args the command line arguments
