@@ -49,14 +49,13 @@ public class EXprincipal extends javax.swing.JFrame {
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
         jmi_playlist = new javax.swing.JMenuItem();
-        jMenu3 = new javax.swing.JMenu();
-        jmi_nosub = new javax.swing.JMenuItem();
         jmi_sub = new javax.swing.JMenuItem();
         jmi_repro = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
         jmi_listau_ = new javax.swing.JMenuItem();
         jmi_listac_ = new javax.swing.JMenuItem();
         jmi_listav_ = new javax.swing.JMenuItem();
+        jmi_crearvid = new javax.swing.JMenuItem();
         jmi_logout = new javax.swing.JMenuItem();
         jd_suscritos = new javax.swing.JDialog();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -104,6 +103,13 @@ public class EXprincipal extends javax.swing.JFrame {
         jScrollPane9 = new javax.swing.JScrollPane();
         jl_novid = new javax.swing.JList<>();
         btn_Add = new javax.swing.JButton();
+        jd_crearvid = new javax.swing.JDialog();
+        jLabel11 = new javax.swing.JLabel();
+        tf_nomvid = new javax.swing.JTextField();
+        jLabel12 = new javax.swing.JLabel();
+        tf_time = new javax.swing.JTextField();
+        btn_cvid = new javax.swing.JButton();
+        btn_cvid_r_ = new javax.swing.JButton();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         tf_user = new javax.swing.JTextField();
@@ -138,20 +144,13 @@ public class EXprincipal extends javax.swing.JFrame {
         });
         jMenu2.add(jmi_playlist);
 
-        jMenu3.setText("Canales");
-
-        jmi_nosub.setText("No suscritos");
-        jMenu3.add(jmi_nosub);
-
-        jmi_sub.setText("Suscritos");
+        jmi_sub.setText("Canales Suscritos");
         jmi_sub.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jmi_subActionPerformed(evt);
             }
         });
-        jMenu3.add(jmi_sub);
-
-        jMenu2.add(jMenu3);
+        jMenu2.add(jmi_sub);
 
         jMenu1.add(jMenu2);
 
@@ -185,6 +184,14 @@ public class EXprincipal extends javax.swing.JFrame {
         jMenu4.add(jmi_listav_);
 
         jMenu1.add(jMenu4);
+
+        jmi_crearvid.setText("Crear Video");
+        jmi_crearvid.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmi_crearvidActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jmi_crearvid);
 
         jmi_logout.setText("Log out");
         jmi_logout.addActionListener(new java.awt.event.ActionListener() {
@@ -560,6 +567,58 @@ public class EXprincipal extends javax.swing.JFrame {
                 .addComponent(btn_playlist_r_, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
+        jLabel11.setText("Nombre del video");
+
+        jLabel12.setText("Tiempo de reproduccion");
+
+        btn_cvid.setText("Crear video");
+        btn_cvid.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_cvidMouseClicked(evt);
+            }
+        });
+
+        btn_cvid_r_.setText("Regresar");
+        btn_cvid_r_.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_cvid_r_MouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jd_crearvidLayout = new javax.swing.GroupLayout(jd_crearvid.getContentPane());
+        jd_crearvid.getContentPane().setLayout(jd_crearvidLayout);
+        jd_crearvidLayout.setHorizontalGroup(
+            jd_crearvidLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jd_crearvidLayout.createSequentialGroup()
+                .addGap(125, 125, 125)
+                .addGroup(jd_crearvidLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(jd_crearvidLayout.createSequentialGroup()
+                        .addComponent(btn_cvid_r_, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 220, Short.MAX_VALUE)
+                        .addComponent(btn_cvid, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tf_time, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel12, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(tf_nomvid, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel11, javax.swing.GroupLayout.Alignment.LEADING))
+                .addContainerGap(149, Short.MAX_VALUE))
+        );
+        jd_crearvidLayout.setVerticalGroup(
+            jd_crearvidLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jd_crearvidLayout.createSequentialGroup()
+                .addGap(75, 75, 75)
+                .addComponent(jLabel11)
+                .addGap(18, 18, 18)
+                .addComponent(tf_nomvid, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(135, 135, 135)
+                .addComponent(jLabel12)
+                .addGap(18, 18, 18)
+                .addComponent(tf_time, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 136, Short.MAX_VALUE)
+                .addGroup(jd_crearvidLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btn_cvid, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
+                    .addComponent(btn_cvid_r_, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
@@ -831,7 +890,7 @@ public class EXprincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_repro_r_MouseClicked
 
     private void btn_repro_MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_repro_MouseClicked
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_btn_repro_MouseClicked
 
     private void jmi_logoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmi_logoutActionPerformed
@@ -1102,6 +1161,29 @@ public class EXprincipal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btn_AddMouseClicked
 
+    private void btn_cvidMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_cvidMouseClicked
+        videos.add(new Video(tf_nomvid.getText(), Integer.parseInt(tf_time.getText()), 0,0));
+    }//GEN-LAST:event_btn_cvidMouseClicked
+
+    private void btn_cvid_r_MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_cvid_r_MouseClicked
+        jd_crearvid.setModal(false);
+        jd_crearvid.setVisible(false);
+        jd_usuario.setModal(true);
+        jd_usuario.pack();
+        jd_usuario.setLocationRelativeTo(this);
+        jd_usuario.setVisible(true);
+        
+    }//GEN-LAST:event_btn_cvid_r_MouseClicked
+
+    private void jmi_crearvidActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmi_crearvidActionPerformed
+        jd_usuario.setModal(false);
+        jd_usuario.setVisible(false);
+        jd_crearvid.setModal(true);
+        jd_crearvid.pack();
+        jd_crearvid.setLocationRelativeTo(this);
+        jd_crearvid.setVisible(true);
+    }//GEN-LAST:event_jmi_crearvidActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1142,6 +1224,8 @@ public class EXprincipal extends javax.swing.JFrame {
     private javax.swing.JButton btn_Add;
     private javax.swing.JButton btn_arbol_r_;
     private javax.swing.JButton btn_crearU;
+    private javax.swing.JButton btn_cvid;
+    private javax.swing.JButton btn_cvid_r_;
     private javax.swing.JButton btn_dejarC;
     private javax.swing.JButton btn_listac_r;
     private javax.swing.JButton btn_listau_r;
@@ -1154,6 +1238,8 @@ public class EXprincipal extends javax.swing.JFrame {
     private javax.swing.JButton btn_vid_r_;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -1165,7 +1251,6 @@ public class EXprincipal extends javax.swing.JFrame {
     private javax.swing.JList<String> jList1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
@@ -1181,6 +1266,7 @@ public class EXprincipal extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane9;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable jTable1;
+    private javax.swing.JDialog jd_crearvid;
     private javax.swing.JDialog jd_listaC;
     private javax.swing.JDialog jd_listaU;
     private javax.swing.JDialog jd_listaV;
@@ -1195,11 +1281,11 @@ public class EXprincipal extends javax.swing.JFrame {
     private javax.swing.JList<String> jl_novid;
     private javax.swing.JList<String> jl_tupl;
     private javax.swing.JMenuItem jmi_Reproducir;
+    private javax.swing.JMenuItem jmi_crearvid;
     private javax.swing.JMenuItem jmi_listac_;
     private javax.swing.JMenuItem jmi_listau_;
     private javax.swing.JMenuItem jmi_listav_;
     private javax.swing.JMenuItem jmi_logout;
-    private javax.swing.JMenuItem jmi_nosub;
     private javax.swing.JMenuItem jmi_playlist;
     private javax.swing.JMenuItem jmi_repro;
     private javax.swing.JMenuItem jmi_sub;
@@ -1212,7 +1298,9 @@ public class EXprincipal extends javax.swing.JFrame {
     private javax.swing.JRadioButton rb_dislike;
     private javax.swing.JRadioButton rb_like;
     private javax.swing.JTextArea ta_comen;
+    private javax.swing.JTextField tf_nomvid;
     private javax.swing.JTextField tf_subtitulos;
+    private javax.swing.JTextField tf_time;
     private javax.swing.JTextField tf_u_canal_;
     private javax.swing.JTextField tf_u_correo_;
     private javax.swing.JTextField tf_u_nom_;
