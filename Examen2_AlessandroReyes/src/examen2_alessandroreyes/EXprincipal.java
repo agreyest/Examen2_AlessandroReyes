@@ -3,6 +3,8 @@ package examen2_alessandroreyes;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
+import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.DefaultTreeModel;
 
 public class EXprincipal extends javax.swing.JFrame {
 
@@ -24,6 +26,13 @@ public class EXprincipal extends javax.swing.JFrame {
         va.cargarArchivo();
         videos = va.getListavid();
         
+        categorias.add("Juegos");
+        categorias.add("Deportes");
+        categorias.add("Musica");
+        categorias.add("Comida");
+        categorias.add("Ingenierias");
+        
+        
     }
 
     /**
@@ -39,12 +48,16 @@ public class EXprincipal extends javax.swing.JFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
-        jmi_videos = new javax.swing.JMenuItem();
         jmi_playlist = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         jmi_nosub = new javax.swing.JMenuItem();
         jmi_sub = new javax.swing.JMenuItem();
         jmi_repro = new javax.swing.JMenuItem();
+        jMenu4 = new javax.swing.JMenu();
+        jmi_listau_ = new javax.swing.JMenuItem();
+        jmi_listac_ = new javax.swing.JMenuItem();
+        jmi_listav_ = new javax.swing.JMenuItem();
+        jmi_logout = new javax.swing.JMenuItem();
         jd_suscritos = new javax.swing.JDialog();
         jScrollPane1 = new javax.swing.JScrollPane();
         jt_arbol = new javax.swing.JTree();
@@ -56,7 +69,32 @@ public class EXprincipal extends javax.swing.JFrame {
         jScrollPane3 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         btn_repro_ = new javax.swing.JButton();
-        pb_playlist = new javax.swing.JProgressBar();
+        pgb_playlist = new javax.swing.JProgressBar();
+        pop_op = new javax.swing.JPopupMenu();
+        jmi_Reproducir = new javax.swing.JMenuItem();
+        jd_vid = new javax.swing.JDialog();
+        tf_subtitulos = new javax.swing.JTextField();
+        pgb_vid = new javax.swing.JProgressBar();
+        btn_repro_vid = new javax.swing.JButton();
+        btn_vid_r_ = new javax.swing.JButton();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        ta_comen = new javax.swing.JTextArea();
+        btn_dejarC = new javax.swing.JButton();
+        rb_like = new javax.swing.JRadioButton();
+        rb_dislike = new javax.swing.JRadioButton();
+        bg_dl = new javax.swing.ButtonGroup();
+        jd_listaU = new javax.swing.JDialog();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        jl_listau = new javax.swing.JList<>();
+        btn_listau_r = new javax.swing.JButton();
+        jd_listaC = new javax.swing.JDialog();
+        btn_listac_r = new javax.swing.JButton();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        jl_listac = new javax.swing.JList<>();
+        jd_listaV = new javax.swing.JDialog();
+        btn_listav_r = new javax.swing.JButton();
+        jScrollPane7 = new javax.swing.JScrollPane();
+        jl_listav = new javax.swing.JList<>();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         tf_user = new javax.swing.JTextField();
@@ -83,9 +121,6 @@ public class EXprincipal extends javax.swing.JFrame {
 
         jMenu2.setText("Visualizar");
 
-        jmi_videos.setText("Videos");
-        jMenu2.add(jmi_videos);
-
         jmi_playlist.setText("Playlist");
         jMenu2.add(jmi_playlist);
 
@@ -95,6 +130,11 @@ public class EXprincipal extends javax.swing.JFrame {
         jMenu3.add(jmi_nosub);
 
         jmi_sub.setText("Suscritos");
+        jmi_sub.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmi_subActionPerformed(evt);
+            }
+        });
         jMenu3.add(jmi_sub);
 
         jMenu2.add(jMenu3);
@@ -103,6 +143,42 @@ public class EXprincipal extends javax.swing.JFrame {
 
         jmi_repro.setText("Reproducir playlist");
         jMenu1.add(jmi_repro);
+
+        jMenu4.setText("Listas");
+
+        jmi_listau_.setText("Usurios");
+        jmi_listau_.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmi_listau_ActionPerformed(evt);
+            }
+        });
+        jMenu4.add(jmi_listau_);
+
+        jmi_listac_.setText("Canales");
+        jmi_listac_.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmi_listac_ActionPerformed(evt);
+            }
+        });
+        jMenu4.add(jmi_listac_);
+
+        jmi_listav_.setText("Videos");
+        jmi_listav_.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmi_listav_ActionPerformed(evt);
+            }
+        });
+        jMenu4.add(jmi_listav_);
+
+        jMenu1.add(jMenu4);
+
+        jmi_logout.setText("Log out");
+        jmi_logout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmi_logoutActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jmi_logout);
 
         jMenuBar1.add(jMenu1);
 
@@ -121,9 +197,19 @@ public class EXprincipal extends javax.swing.JFrame {
 
         javax.swing.tree.DefaultMutableTreeNode treeNode1 = new javax.swing.tree.DefaultMutableTreeNode("Categorias");
         jt_arbol.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
+        jt_arbol.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jt_arbolMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jt_arbol);
 
         btn_arbol_r_.setText("Regresar");
+        btn_arbol_r_.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_arbol_r_MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jd_suscritosLayout = new javax.swing.GroupLayout(jd_suscritos.getContentPane());
         jd_suscritos.getContentPane().setLayout(jd_suscritosLayout);
@@ -147,6 +233,11 @@ public class EXprincipal extends javax.swing.JFrame {
         );
 
         btn_repro_r_.setText("Regresar");
+        btn_repro_r_.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_repro_r_MouseClicked(evt);
+            }
+        });
 
         jList1.setModel(new DefaultListModel());
         jScrollPane2.setViewportView(jList1);
@@ -177,6 +268,11 @@ public class EXprincipal extends javax.swing.JFrame {
         jScrollPane3.setViewportView(jTable1);
 
         btn_repro_.setText("Reproducir playlist");
+        btn_repro_.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_repro_MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jd_reproducirLayout = new javax.swing.GroupLayout(jd_reproducir.getContentPane());
         jd_reproducir.getContentPane().setLayout(jd_reproducirLayout);
@@ -190,7 +286,7 @@ public class EXprincipal extends javax.swing.JFrame {
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 462, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addComponent(pb_playlist, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(pgb_playlist, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jd_reproducirLayout.setVerticalGroup(
             jd_reproducirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -199,11 +295,192 @@ public class EXprincipal extends javax.swing.JFrame {
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 411, Short.MAX_VALUE)
                     .addComponent(jScrollPane2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
-                .addComponent(pb_playlist, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(pgb_playlist, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(jd_reproducirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_repro_r_, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btn_repro_, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)))
+        );
+
+        jmi_Reproducir.setText("Reproducir video");
+        jmi_Reproducir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmi_ReproducirActionPerformed(evt);
+            }
+        });
+        pop_op.add(jmi_Reproducir);
+
+        btn_repro_vid.setText("Reproducir");
+        btn_repro_vid.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_repro_vidMouseClicked(evt);
+            }
+        });
+
+        btn_vid_r_.setText("Regresar");
+        btn_vid_r_.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_vid_r_MouseClicked(evt);
+            }
+        });
+
+        ta_comen.setColumns(20);
+        ta_comen.setRows(5);
+        jScrollPane4.setViewportView(ta_comen);
+
+        btn_dejarC.setText("Dejar comentario");
+        btn_dejarC.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_dejarCMouseClicked(evt);
+            }
+        });
+
+        bg_dl.add(rb_like);
+        rb_like.setText("Like");
+
+        bg_dl.add(rb_dislike);
+        rb_dislike.setText("Dislike");
+
+        javax.swing.GroupLayout jd_vidLayout = new javax.swing.GroupLayout(jd_vid.getContentPane());
+        jd_vid.getContentPane().setLayout(jd_vidLayout);
+        jd_vidLayout.setHorizontalGroup(
+            jd_vidLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(pgb_vid, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jd_vidLayout.createSequentialGroup()
+                .addGroup(jd_vidLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jd_vidLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(btn_vid_r_, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(88, 88, 88)
+                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 333, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jd_vidLayout.createSequentialGroup()
+                        .addGap(306, 306, 306)
+                        .addComponent(btn_repro_vid))
+                    .addGroup(jd_vidLayout.createSequentialGroup()
+                        .addGap(122, 122, 122)
+                        .addComponent(tf_subtitulos, javax.swing.GroupLayout.PREFERRED_SIZE, 476, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btn_dejarC, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+            .addGroup(jd_vidLayout.createSequentialGroup()
+                .addGap(208, 208, 208)
+                .addComponent(rb_like)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(rb_dislike)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jd_vidLayout.setVerticalGroup(
+            jd_vidLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jd_vidLayout.createSequentialGroup()
+                .addGap(26, 26, 26)
+                .addComponent(btn_repro_vid)
+                .addGap(18, 18, 18)
+                .addComponent(pgb_vid, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(tf_subtitulos, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(116, 116, 116)
+                .addGroup(jd_vidLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(rb_like)
+                    .addComponent(rb_dislike))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 86, Short.MAX_VALUE)
+                .addGroup(jd_vidLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jd_vidLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(btn_vid_r_, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btn_dejarC, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)))
+        );
+
+        jl_listau.setModel(new DefaultListModel());
+        jScrollPane5.setViewportView(jl_listau);
+
+        btn_listau_r.setText("Regresar");
+        btn_listau_r.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_listau_rMouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jd_listaULayout = new javax.swing.GroupLayout(jd_listaU.getContentPane());
+        jd_listaU.getContentPane().setLayout(jd_listaULayout);
+        jd_listaULayout.setHorizontalGroup(
+            jd_listaULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jd_listaULayout.createSequentialGroup()
+                .addGap(211, 211, 211)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 342, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(185, Short.MAX_VALUE))
+            .addGroup(jd_listaULayout.createSequentialGroup()
+                .addComponent(btn_listau_r, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+        jd_listaULayout.setVerticalGroup(
+            jd_listaULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jd_listaULayout.createSequentialGroup()
+                .addGap(31, 31, 31)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 396, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
+                .addComponent(btn_listau_r, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+
+        btn_listac_r.setText("Regresar");
+        btn_listac_r.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_listac_rMouseClicked(evt);
+            }
+        });
+
+        jl_listac.setModel(new DefaultListModel());
+        jScrollPane6.setViewportView(jl_listac);
+
+        javax.swing.GroupLayout jd_listaCLayout = new javax.swing.GroupLayout(jd_listaC.getContentPane());
+        jd_listaC.getContentPane().setLayout(jd_listaCLayout);
+        jd_listaCLayout.setHorizontalGroup(
+            jd_listaCLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jd_listaCLayout.createSequentialGroup()
+                .addComponent(btn_listac_r, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(jd_listaCLayout.createSequentialGroup()
+                .addGap(187, 187, 187)
+                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 331, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(211, Short.MAX_VALUE))
+        );
+        jd_listaCLayout.setVerticalGroup(
+            jd_listaCLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jd_listaCLayout.createSequentialGroup()
+                .addGap(39, 39, 39)
+                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 419, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
+                .addComponent(btn_listac_r))
+        );
+
+        btn_listav_r.setText("Regresar");
+        btn_listav_r.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_listav_rMouseClicked(evt);
+            }
+        });
+
+        jl_listav.setModel(new DefaultListModel());
+        jScrollPane7.setViewportView(jl_listav);
+
+        javax.swing.GroupLayout jd_listaVLayout = new javax.swing.GroupLayout(jd_listaV.getContentPane());
+        jd_listaV.getContentPane().setLayout(jd_listaVLayout);
+        jd_listaVLayout.setHorizontalGroup(
+            jd_listaVLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jd_listaVLayout.createSequentialGroup()
+                .addComponent(btn_listav_r, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(jd_listaVLayout.createSequentialGroup()
+                .addGap(197, 197, 197)
+                .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 342, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(205, Short.MAX_VALUE))
+        );
+        jd_listaVLayout.setVerticalGroup(
+            jd_listaVLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jd_listaVLayout.createSequentialGroup()
+                .addGap(49, 49, 49)
+                .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 388, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
+                .addComponent(btn_listav_r, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -361,8 +638,6 @@ public class EXprincipal extends javax.swing.JFrame {
                     if (tf_user.getText().equals(users.get(i).getUser())
                             && pf_contra.getText().equals(users.get(i).getContra())) {
                         v = true;
-                        pf_contra.setText("");
-                        tf_user.setText("");
                         this.setVisible(false);
                         jd_usuario.setModal(true);
                         jd_usuario.pack();
@@ -381,28 +656,258 @@ public class EXprincipal extends javax.swing.JFrame {
 
     private void btn_crearUMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_crearUMouseClicked
         canales.add(new Canal(tf_u_canal_.getText()));
-        users.add(new Usuario(tf_u_nom_.getText(), (int)js_u_edad_.getValue(), tf_u_correo_.getText(),canales.get(0),
+        users.add(new Usuario(tf_u_nom_.getText(), (int) js_u_edad_.getValue(), tf_u_correo_.getText(), canales.get(0),
                 tf_u_user_.getText(), tf_u_pw_.getText()));
-        
+
     }//GEN-LAST:event_btn_crearUMouseClicked
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         //-----------------------------------------------------------------------------------------------------------
-        
+
         CanalAdmi ca = new CanalAdmi("./Canales.aporelcien");
         ca.setListacanals(canales);
         ca.escribirArchivo();
-        
+
         UsuarioAdmi ua = new UsuarioAdmi("./Canales.aporelcien");
         ua.setListausers(users);
         ua.escribirArchivo();
-        
+
         VideoAdmi va = new VideoAdmi("./Canales.aporelcien");
         va.setListavid(videos);
         va.escribirArchivo();
-         
+
         //--------------------------------------------------------------------------------------------------------
     }//GEN-LAST:event_formWindowClosing
+
+    private void jt_arbolMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jt_arbolMouseClicked
+        if(evt.isMetaDown()){
+            int row = jt_arbol.getClosestRowForLocation(evt.getX(), evt.getY());
+            jt_arbol.setSelectionRow(row);
+             v1=
+                    jt_arbol.getSelectionPath().getLastPathComponent();
+            nodo_seleccionado = (DefaultMutableTreeNode) v1;
+            if(nodo_seleccionado.getUserObject() instanceof Video){
+                video_seleccionado
+                        = (Video) nodo_seleccionado.getUserObject();
+                pop_op.show(evt.getComponent(), evt.getX(), evt.getY());
+                
+            }
+        }
+    }//GEN-LAST:event_jt_arbolMouseClicked
+
+    private void jmi_ReproducirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmi_ReproducirActionPerformed
+        Video v = (Video) nodo_seleccionado.getUserObject();
+        va = new Hilovid(pgb_vid, v.getTiempo(), tf_subtitulos);
+        jd_suscritos.setModal(false);
+        jd_suscritos.setVisible(false);
+        jd_vid.setModal(true);
+        jd_vid.pack();
+        jd_vid.setLocationRelativeTo(this);
+        jd_vid.setVisible(true);
+    }//GEN-LAST:event_jmi_ReproducirActionPerformed
+
+    private void btn_repro_vidMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_repro_vidMouseClicked
+        va.start();
+    }//GEN-LAST:event_btn_repro_vidMouseClicked
+
+    private void btn_arbol_r_MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_arbol_r_MouseClicked
+        jd_suscritos.setModal(false);
+        jd_suscritos.setVisible(false);
+        
+        //jt_arbol
+        DefaultMutableTreeNode r = new DefaultMutableTreeNode("Categorias");
+        DefaultTreeModel modeloARBOL = new DefaultTreeModel(r) ;
+        jt_arbol.setModel(modeloARBOL);
+        
+        
+        jd_usuario.setModal(true);
+        jd_usuario.pack();
+        jd_usuario.setLocationRelativeTo(this);
+        jd_usuario.setVisible(true);
+    }//GEN-LAST:event_btn_arbol_r_MouseClicked
+
+    private void btn_vid_r_MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_vid_r_MouseClicked
+        jd_vid.setModal(false);
+        jd_vid.setVisible(false);
+        Video v = (Video) nodo_seleccionado.getUserObject();
+        int ñ = v.getLikes();
+        if(rb_like.isSelected()){
+            v.setLikes(ñ+1);
+        }else
+             v.setLikes(ñ-1);
+        
+        
+        jd_suscritos.setModal(true);
+        jd_suscritos.pack();
+        jd_suscritos.setLocationRelativeTo(this);
+        jd_suscritos.setVisible(true);
+    }//GEN-LAST:event_btn_vid_r_MouseClicked
+
+    private void btn_repro_r_MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_repro_r_MouseClicked
+        jd_suscritos.setModal(false);
+        jd_suscritos.setVisible(false);
+        jd_usuario.setModal(true);
+        jd_usuario.pack();
+        jd_usuario.setLocationRelativeTo(this);
+        jd_usuario.setVisible(true);
+        
+    }//GEN-LAST:event_btn_repro_r_MouseClicked
+
+    private void btn_repro_MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_repro_MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_repro_MouseClicked
+
+    private void jmi_logoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmi_logoutActionPerformed
+        pf_contra.setText("");
+        tf_user.setText("");
+
+        jd_usuario.setModal(false);
+        jd_usuario.setVisible(false);
+        this.setVisible(true);
+    }//GEN-LAST:event_jmi_logoutActionPerformed
+
+    private void jmi_subActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmi_subActionPerformed
+        int x=0;
+        for (int i = 0; i < users.size(); i++) {
+            if (tf_user.getText().equals(users.get(i).getUser())
+                && pf_contra.getText().equals(users.get(i).getContra())) {
+                x = i;
+                break;
+            }
+        }
+        //users.get(x).getListas()
+        for (int LN = 0; LN < users.get(x).getPlaylist().getVideos().size(); LN++) {
+            DefaultTreeModel modeloARBOL = (DefaultTreeModel) jt_arbol.getModel();
+            DefaultMutableTreeNode raiz
+            = (DefaultMutableTreeNode) modeloARBOL.getRoot();
+            int centinela = -1;
+            boolean a = false;
+            int y=0;
+            for (int i = 0; i < canales.size(); i++) {// canales.get(i).getVideos().size()
+                for (int j = 0; j < users.get(x).getPlaylist().getVideos().size(); j++) {
+                    for (int k = 0; k < canales.get(i).getVideos().size(); k++) {
+                        if (canales.get(i).getVideos().get(k).getNombre().equals(
+                            users.get(x).getPlaylist().getVideos().get(j).getNombre())) {
+                        y = i;
+                        break;
+                    }
+                }
+            }
+
+        }
+        for (int i = 0; i < raiz.getChildCount(); i++) {
+            if (raiz.getChildAt(i).toString().equals(canales.get(canales.size() - 1).getCategoria())) {
+                for (int j = 0; j < raiz.getChildAt(i).getChildCount(); j++) {
+                    if (raiz.getChildAt(i).getChildAt(j).toString().equals(canales.get(canales.size() - 1).getNombre())) {
+                        a = true;
+                        JOptionPane.showMessageDialog(this, "El canal ya esta agregado");
+                        break;
+                    } else if (j == raiz.getChildAt(i).getChildCount() - 1
+                        && !raiz.getChildAt(i).getChildAt(j).toString().equals(canales.get(canales.size() - 1).getNombre())) {
+                        a = true;
+                        DefaultMutableTreeNode p
+                        = new DefaultMutableTreeNode(
+                            new Canal(canales.get(canales.size() - 1).getSuscriptores(),
+                                canales.get(canales.size() - 1).getNombre(),
+                                canales.get(canales.size() - 1).getCategoria(),
+                                canales.get(canales.size() - 1).getNumvideos(),
+                                canales.get(canales.size() - 1).getLikesT(),
+                                canales.get(canales.size() - 1).getDislikes()));
+                        ((DefaultMutableTreeNode) raiz.getChildAt(i)).add(p);
+                        //raiz.getChildAt(i).getChildAt(j).getChildCount().add(dmt);
+                        for (int k = 0; k < raiz.getChildAt(i).getChildAt(j).getChildCount(); k++) {
+                            DefaultMutableTreeNode dmt
+                            = new DefaultMutableTreeNode(
+                                new Video(users.get(x).getPlaylist().getVideos().get(k).getNombre(),
+                                    users.get(x).getPlaylist().getVideos().get(j).getTiempo(),
+                                    users.get(x).getPlaylist().getVideos().get(j).getLikes(),
+                                    users.get(x).getPlaylist().getVideos().get(j).getDislikes()));
+                            ( (DefaultMutableTreeNode) raiz.getChildAt(i).getChildAt(j) ).add(dmt);
+                        }
+                        break;
+                    }//fin del elseif
+                }//fin del for2
+                if (a == true) {
+                    centinela = 1;
+                }
+            }//fin if
+        }//fin for1
+        if (centinela == -1) {
+            DefaultMutableTreeNode n
+            = new DefaultMutableTreeNode(canales.get(canales.size() - 1).getCategoria());
+            DefaultMutableTreeNode p
+            = new DefaultMutableTreeNode(
+                new Canal(canales.get(canales.size() - 1).getSuscriptores(),
+                    canales.get(canales.size() - 1).getNombre(),
+                    canales.get(canales.size() - 1).getCategoria(),
+                    canales.get(canales.size() - 1).getNumvideos(),
+                    canales.get(canales.size() - 1).getLikesT(),
+                    canales.get(canales.size() - 1).getDislikes()));
+            DefaultMutableTreeNode dmt
+            = new DefaultMutableTreeNode();
+            for (int k = 0; k < users.get(x).getPlaylist().getVideos().size(); k++) {
+                dmt
+                = new DefaultMutableTreeNode(
+                    new Video(users.get(x).getPlaylist().getVideos().get(k).getNombre(),
+                        users.get(x).getPlaylist().getVideos().get(k).getTiempo(),
+                        users.get(x).getPlaylist().getVideos().get(k).getLikes(),
+                        users.get(x).getPlaylist().getVideos().get(k).getDislikes()));
+            }
+            p.add(dmt);
+            n.add(p);
+            raiz.add(n);
+        }//fin if
+        }
+        jd_usuario.setModal(false);
+        jd_usuario.setVisible(false);
+        jd_suscritos.setModal(true);
+        jd_suscritos.pack();
+        jd_suscritos.setLocationRelativeTo(this);
+        jd_suscritos.setVisible(true);
+    }//GEN-LAST:event_jmi_subActionPerformed
+
+    private void btn_dejarCMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_dejarCMouseClicked
+        Video v = (Video) nodo_seleccionado.getUserObject();
+        v.getSubtitulos().add(ta_comen.getText());
+        ta_comen.setText("");
+        JOptionPane.showMessageDialog(jd_vid, "COmentario dejado con exito");
+    }//GEN-LAST:event_btn_dejarCMouseClicked
+
+    private void jmi_listau_ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmi_listau_ActionPerformed
+        DefaultListModel m = (DefaultListModel) jl_listau.getModel();
+        for (int i = 0; i < users.size(); i++) {
+            m.addElement(users.get(i).getNombre()+", "+users.get(i).getUser());
+        }
+        jl_listau.setModel(m);
+    }//GEN-LAST:event_jmi_listau_ActionPerformed
+
+    private void btn_listau_rMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_listau_rMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_listau_rMouseClicked
+
+    private void jmi_listac_ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmi_listac_ActionPerformed
+        DefaultListModel m = (DefaultListModel) jl_listac.getModel();
+        for (int i = 0; i < canales.size(); i++) {
+            m.addElement(canales.get(i).getNombre()+", "+canales.get(i).getCategoria());
+        }
+        jl_listac.setModel(m);
+    }//GEN-LAST:event_jmi_listac_ActionPerformed
+
+    private void btn_listac_rMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_listac_rMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_listac_rMouseClicked
+
+    private void jmi_listav_ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmi_listav_ActionPerformed
+        DefaultListModel m = (DefaultListModel) jl_listav.getModel();
+        for (int i = 0; i < videos.size(); i++) {
+            m.addElement(videos.get(i).getNombre()+", "+videos.get(i).getTiempo());
+        }
+        jl_listav.setModel(m);
+    }//GEN-LAST:event_jmi_listav_ActionPerformed
+
+    private void btn_listav_rMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_listav_rMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_listav_rMouseClicked
 
     /**
      * @param args the command line arguments
@@ -440,11 +945,18 @@ public class EXprincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.ButtonGroup bg_dl;
     private javax.swing.JButton btn_arbol_r_;
     private javax.swing.JButton btn_crearU;
+    private javax.swing.JButton btn_dejarC;
+    private javax.swing.JButton btn_listac_r;
+    private javax.swing.JButton btn_listau_r;
+    private javax.swing.JButton btn_listav_r;
     private javax.swing.JButton btn_login;
     private javax.swing.JButton btn_repro_;
     private javax.swing.JButton btn_repro_r_;
+    private javax.swing.JButton btn_repro_vid;
+    private javax.swing.JButton btn_vid_r_;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -457,26 +969,48 @@ public class EXprincipal extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
+    private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JScrollPane jScrollPane6;
+    private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable jTable1;
+    private javax.swing.JDialog jd_listaC;
+    private javax.swing.JDialog jd_listaU;
+    private javax.swing.JDialog jd_listaV;
     private javax.swing.JDialog jd_reproducir;
     private javax.swing.JDialog jd_suscritos;
     private javax.swing.JDialog jd_usuario;
+    private javax.swing.JDialog jd_vid;
+    private javax.swing.JList<String> jl_listac;
+    private javax.swing.JList<String> jl_listau;
+    private javax.swing.JList<String> jl_listav;
+    private javax.swing.JMenuItem jmi_Reproducir;
+    private javax.swing.JMenuItem jmi_listac_;
+    private javax.swing.JMenuItem jmi_listau_;
+    private javax.swing.JMenuItem jmi_listav_;
+    private javax.swing.JMenuItem jmi_logout;
     private javax.swing.JMenuItem jmi_nosub;
     private javax.swing.JMenuItem jmi_playlist;
     private javax.swing.JMenuItem jmi_repro;
     private javax.swing.JMenuItem jmi_sub;
-    private javax.swing.JMenuItem jmi_videos;
     private javax.swing.JSpinner js_u_edad_;
     private javax.swing.JTree jt_arbol;
-    private javax.swing.JProgressBar pb_playlist;
     private javax.swing.JPasswordField pf_contra;
+    private javax.swing.JProgressBar pgb_playlist;
+    private javax.swing.JProgressBar pgb_vid;
+    private javax.swing.JPopupMenu pop_op;
+    private javax.swing.JRadioButton rb_dislike;
+    private javax.swing.JRadioButton rb_like;
+    private javax.swing.JTextArea ta_comen;
+    private javax.swing.JTextField tf_subtitulos;
     private javax.swing.JTextField tf_u_canal_;
     private javax.swing.JTextField tf_u_correo_;
     private javax.swing.JTextField tf_u_nom_;
@@ -487,4 +1021,9 @@ public class EXprincipal extends javax.swing.JFrame {
     private ArrayList <Usuario> users = new ArrayList();
     private ArrayList <Canal> canales = new ArrayList();
     private ArrayList <Video> videos = new ArrayList();
+    private ArrayList <String> categorias = new ArrayList();
+    Hilovid va;
+    DefaultMutableTreeNode nodo_seleccionado;
+    Video video_seleccionado;
+    Object v1;
 }

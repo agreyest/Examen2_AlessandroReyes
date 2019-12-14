@@ -11,7 +11,7 @@ public class Usuario implements Serializable{
     private String user;
     private String contra;
     private ArrayList<Canal> suscritos = new ArrayList();
-    private ArrayList<Playlist> listas = new ArrayList();
+    private Playlist playlist;
 
     private static final long SerialVersionUID=222L;
     
@@ -92,14 +92,15 @@ public class Usuario implements Serializable{
         this.suscritos = suscritos;
     }
 
-    public ArrayList<Playlist> getListas() {
-        return listas;
+    public Playlist getPlaylist() {
+        return playlist;
     }
 
-    public void setListas(ArrayList<Playlist> listas) {
-        this.listas = listas;
+    public void setPlaylist(Playlist listas) {
+        this.playlist = listas;
     }
 
+    
     @Override
     public String toString() {
         return user + ", canal=" + canal;
