@@ -804,7 +804,13 @@ public class EXprincipal extends javax.swing.JFrame {
         canales.add(new Canal(tf_u_canal_.getText()));
         users.add(new Usuario(tf_u_nom_.getText(), (int) js_u_edad_.getValue(), tf_u_correo_.getText(), canales.get(0),
                 tf_u_user_.getText(), tf_u_pw_.getText()));
-
+        JOptionPane.showMessageDialog(this, "Usuario y canal creado con exito");
+        tf_u_nom_.setText("");
+        js_u_edad_.setValue(0);
+        tf_u_correo_.setText("");
+        tf_u_user_.setText("");
+        tf_u_pw_.setText("");
+        tf_u_canal_.setText("");
     }//GEN-LAST:event_btn_crearUMouseClicked
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
